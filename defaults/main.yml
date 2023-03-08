@@ -40,5 +40,8 @@ haproxy_logrotate_interval: daily
 # Number of backlog files to keep
 haproxy_logrotate_backlog_size: 366
 
+# Extra configuration added at the end
+haproxy_additional_configuration: ""
+
 # haproxy template source
 haproxy_cfg_template: haproxy.cfg.j2
