@@ -88,3 +88,5 @@ backend {{ back.name }}
     timeout server {{ back.timeout_server }}
 {%   endif %}
 {% endfor %}
+
+{{ haproxy_additional_configuration | default('') }}
