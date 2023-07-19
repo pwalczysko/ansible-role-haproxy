@@ -10,6 +10,18 @@ on:
 jobs:
 
   list-scenarios:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.listscenarios.outputs.scenarios }}
+    steps:
+      - uses: actions/checkout@v2
+      - id: listscenarios
+        uses: ome/action-ansible-molecule-list-scenarios@main
+
+  test:
+    name: Test
+    needs:
+      - list-scenarios
     runs-on: ubuntu-20.04
     strategy:
       # Keep running so we can see if other tests pass
