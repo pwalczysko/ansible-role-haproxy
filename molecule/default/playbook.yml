@@ -19,7 +19,7 @@
       become: true
 
   roles:
-    - role: ansible-role-haproxy
+    - role: ome.haproxy
       haproxy_syslog_enable: true
       haproxy_syslog_configure_udp: true
       haproxy_frontends:
