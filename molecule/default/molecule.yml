@@ -13,9 +13,6 @@ platforms:
     image_version: latest
     command: /sbin/init
     privileged: true
-  - name: haproxy-u1604
-    image: ubuntu
-    image_version: '16.04'
 provisioner:
   name: ansible
   lint:
