@@ -3,17 +3,16 @@ dependency:
   name: galaxy
 driver:
   name: docker
-lint:
-  name: yamllint
+lint: |
+    yamllint .
+    ansible-lint
+    flake8
 platforms:
   - name: haproxy-c7
     image: centos/systemd
     image_version: latest
     command: /sbin/init
     privileged: true
-  - name: haproxy-u1604
-    image: ubuntu
-    image_version: '16.04'
 provisioner:
   name: ansible
   lint:
@@ -22,5 +21,3 @@ scenario:
   name: default
 verifier:
   name: testinfra
-  lint:
-    name: flake8

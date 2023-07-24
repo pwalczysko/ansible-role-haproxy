@@ -13,9 +13,7 @@ galaxy_info:
     - name: EL
       versions:
         - 7
-    - name: Ubuntu
-      versions:
-        - xenial
+  namespace: ome
   galaxy_tags:
     - web
     - networking
