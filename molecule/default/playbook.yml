@@ -3,11 +3,12 @@
   hosts: all
   pre_tasks:
     - name: Install dependencies
-      package:
+      dnf:
         name:
           - curl
           - rsyslog
           - openssl
+        allowerasing: true
         state: present
     - name: Ensure dummy certificate is in place
       command: >-
