@@ -8,8 +8,8 @@ lint: |
     ansible-lint
     flake8
 platforms:
-  - name: haproxy-c7
-    image: centos/systemd
+  - name: haproxy-rockylinux9
+    image: eniocarboni/docker-rockylinux-systemd:9
     image_version: latest
     command: /sbin/init
     privileged: true
