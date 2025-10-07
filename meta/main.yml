@@ -8,11 +8,11 @@ galaxy_info:
   description: HAProxy installation and configuration.
   company: Open Microscopy Environment
   license: "license (BSD, MIT)"
-  min_ansible_version: 2.3
+  min_ansible_version: 2.11
   platforms:
     - name: EL
       versions:
-        - 7
+        - 9
   namespace: ome
   galaxy_tags:
     - web

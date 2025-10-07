@@ -1,7 +1,9 @@
 ---
+
 - name: Ensure HAProxy is installed
   become: true
-  package:
+  ansible.builtin.apt:
+    update_cache: true
     name: "{{ haproxy_package_name }}"
     state: present
 
@@ -59,3 +61,20 @@
 - name: Ensure HAProxy is started and enabled on boot.
   become: true
   service: name=haproxy state=started enabled=yes
+
+# - name: restart haproxy
+#   become: true
+#   service:
+#     name: haproxy
+#     state: restarted
+
+# - name: Debug output of systemclt rsyslog
+#   become: true
+#   ansible.builtin.command:
+#     systemctl status haproxy
+#   register: haproxy_status
+#   ignore_errors: yes
+
+# - name: Show output
+#   debug: 
+#     msg: "{{ haproxy_status.stdout }}"
