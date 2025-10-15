@@ -9,7 +9,7 @@ lint: |
     flake8
 platforms:
   - name: haproxy-rockylinux9
-    image: eniocarboni/docker-rockylinux-systemd:9
+    image: dudecalledbro/molecule-rockylinux9-ansible
     image_version: latest
     command: /sbin/init
     privileged: true
