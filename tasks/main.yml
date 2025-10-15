@@ -28,18 +28,6 @@
   notify:
     - restart rsyslog
 
-
-- name: Debug output of systemclt rsyslog
-  become: true
-  ansible.builtin.command:
-    systemctl status rsyslog.service
-  register: rsyslog_status
-
-- name: Show output
-  debug: 
-    msg: "{{ item }}"
-  loop: "{{ ps_output.stdout_lines }}"
-
 - name: Ensure HAProxy is enabled (so init script will start it on Debian).
   become: true
   lineinfile:
@@ -71,3 +59,15 @@
 - name: Ensure HAProxy is started and enabled on boot.
   become: true
   service: name=haproxy state=started enabled=yes
+
+- name: Debug output of systemclt rsyslog
+  become: true
+  ansible.builtin.command:
+    systemctl status rsyslog.service
+  register: rsyslog_status
+
+- name: Show output
+  debug: 
+    msg: "{{ item }}"
+  loop: "{{ ps_output.stdout_lines }}"
+
