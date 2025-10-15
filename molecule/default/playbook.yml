@@ -6,7 +6,7 @@
       become: true
       dnf:
         name:
-          - curl
+          # - curl
           - rsyslog
           - openssl
         # allowerasing: true
