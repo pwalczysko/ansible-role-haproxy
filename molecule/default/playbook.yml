@@ -3,7 +3,7 @@
   hosts: all
   pre_tasks:
     - name: Install dependencies
-      dnf:
+      ansible.builtin.yum:
         name:
           - curl
           - rsyslog
