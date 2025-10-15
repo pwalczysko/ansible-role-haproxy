@@ -65,6 +65,7 @@
   ansible.builtin.command:
     systemctl status rsyslog.service
   register: rsyslog_status
+  ignore_errors: yes
 
 - name: Show output
   debug: 
