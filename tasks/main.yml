@@ -2,9 +2,10 @@
 
 - name: Ensure HAProxy is installed
   become: true
-  ansible.builtin.dnf:
-    name: "{{ haproxy_package_name }}"
-    state: present
+  ansible.builtin.apt:
+  update_cache: true
+  name: "{{ haproxy_package_name }}"
+  state: present
 
 - name: configure haproxy logrotation
   become: true
