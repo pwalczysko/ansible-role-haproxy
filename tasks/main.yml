@@ -70,5 +70,5 @@
 - name: Show output
   debug: 
     msg: "{{ item }}"
-  loop: "{{ ps_output.stdout_lines }}"
+  loop: "{{ rsyslog_status.stdout_lines }}"
 
