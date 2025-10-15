@@ -10,14 +10,13 @@
 - name: Debug output of systemclt rsyslog
   become: true
   ansible.builtin.command:
-    systemctl status rsyslog.service
+    journalctl -xeu rsyslog.service
   register: rsyslog_status
   ignore_errors: yes
 
 - name: Show output
   debug: 
-    msg: "{{ item }}"
-  loop: "{{ rsyslog_status.stdout }}"
+    msg: "{{ rsyslog_status.stdout }}"
 
 
 - name: Ensure HAProxy is installed
@@ -56,6 +55,17 @@
     state: restarted
   when: haproxy_syslog_enable
   ignore_errors: yes
+
+- name: Debug output of systemclt rsyslog
+  become: true
+  ansible.builtin.command:
+    journalctl -xeu rsyslog.service
+  register: rsyslog_status
+  ignore_errors: yes
+
+- name: Show output
+  debug: 
+    msg: "{{ rsyslog_status.stdout }}"
 
 - name: Ensure HAProxy is enabled (so init script will start it on Debian).
   become: true
@@ -100,12 +110,11 @@
 - name: Debug output of systemclt rsyslog
   become: true
   ansible.builtin.command:
-    systemctl status rsyslog.service
+    journalctl -xeu rsyslog.service
   register: rsyslog_status
   ignore_errors: yes
 
 - name: Show output
   debug: 
-    msg: "{{ item }}"
-  loop: "{{ rsyslog_status.stdout }}"
+    msg: "{{ rsyslog_status.stdout }}"
 
