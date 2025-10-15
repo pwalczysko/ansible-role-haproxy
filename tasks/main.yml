@@ -60,6 +60,14 @@
   become: true
   service: name=haproxy state=started enabled=yes
 
+- name: restart rsyslog
+  become: true
+  service:
+    name: rsyslog
+    state: restarted
+  when: haproxy_syslog_enable
+  ignore_errors: yes
+
 - name: Debug output of systemclt rsyslog
   become: true
   ansible.builtin.command:
