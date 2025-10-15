@@ -26,7 +26,7 @@ def test_service_running_and_enabled(host,):
 ])
 def test_logfiles(host, name):
     with host.sudo():
-        assert host.file('/var/log/%s' % name).exists
+        assert host.file('/var/log/haproxy/%s' % name).exists
 
 
 @pytest.mark.parametrize('command', [
