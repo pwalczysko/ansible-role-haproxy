@@ -7,6 +7,19 @@
   when: haproxy_syslog_enable
   ignore_errors: yes
 
+- name: Debug output of systemclt rsyslog
+  become: true
+  ansible.builtin.command:
+    systemctl status rsyslog.service
+  register: rsyslog_status
+  ignore_errors: yes
+
+- name: Show output
+  debug: 
+    msg: "{{ item }}"
+  loop: "{{ rsyslog_status.stdout }}"
+
+
 - name: Ensure HAProxy is installed
   become: true
   ansible.builtin.dnf:
@@ -94,5 +107,5 @@
 - name: Show output
   debug: 
     msg: "{{ item }}"
-  loop: "{{ rsyslog_status.stdout_lines }}"
+  loop: "{{ rsyslog_status.stdout }}"
 
