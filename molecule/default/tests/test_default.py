@@ -9,7 +9,7 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
 
 
 def test_service_running_and_enabled(host,):
-    if host.file('/etc/ubuntu-release').exists:
+    if host.file('/etc/os-release').exists:
         service = host.service('haproxy')
         assert service.is_running
         assert service.is_enabled
