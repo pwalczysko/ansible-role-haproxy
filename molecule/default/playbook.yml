@@ -4,14 +4,11 @@
   pre_tasks:
     - name: Install dependencies
       become: true
-      dnf:
+      ansible.builtin.apt:
+        update_cache: true
         name:
-          # - curl
+          - curl
           - rsyslog
-          - rsyslog-gnutls
-          - rsyslog-gssapi
-          - rsyslog-logrotate
-          - rsyslog-relp
           - openssl
         # allowerasing: true
         state: present

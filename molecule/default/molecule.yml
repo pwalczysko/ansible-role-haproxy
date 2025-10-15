@@ -8,8 +8,8 @@ lint: |
     ansible-lint
     flake8
 platforms:
-  - name: haproxy-rockylinux9
-    image: dudecalledbro/molecule-rockylinux9-ansible
+  - name: haproxy-u2204
+    image: eniocarboni/docker-ubuntu-systemd:22.04
     image_version: latest
     command: /sbin/init
     privileged: true
