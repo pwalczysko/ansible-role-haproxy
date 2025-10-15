@@ -16,7 +16,7 @@
       service:
         name: rsyslog
         state: restarted
-      when: haproxy_syslog_enable
+      # when: haproxy_syslog_enable
       ignore_errors: yes
 
     - name: Debug output of systemclt rsyslog
