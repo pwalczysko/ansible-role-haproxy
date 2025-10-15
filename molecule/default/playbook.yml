@@ -9,6 +9,9 @@
           # - curl
           - rsyslog
           - rsyslog-gnutls
+          - rsyslog-gssapi
+          - rsyslog-logrotate
+          - rsyslog-relp
           - openssl
         # allowerasing: true
         state: present
