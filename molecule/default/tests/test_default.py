@@ -9,14 +9,14 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
 
 
 def test_service_running_and_enabled(host,):
-    if host.file('/etc/redhat-release').exists:
+    if host.file('/etc/ubuntu-release').exists:
         service = host.service('haproxy')
         assert service.is_running
         assert service.is_enabled
     else:
         # BUG: testinfra tries to use systemd
         out = host.check_output('service haproxy status')
-        assert out == 'haproxy is running.'
+        assert out == 'Active: active (running)'
 
 
 @pytest.mark.parametrize('name', [
