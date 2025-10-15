@@ -22,7 +22,7 @@
     - name: Debug output of systemclt rsyslog
       become: true
       ansible.builtin.command:
-        systemctl status rsyslog.service
+        journalctl -xeu rsyslog.service
       register: rsyslog_status
       ignore_errors: yes
 
