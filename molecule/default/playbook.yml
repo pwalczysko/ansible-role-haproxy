@@ -3,12 +3,13 @@
   hosts: all
   pre_tasks:
     - name: Install dependencies
+      become: true
       dnf:
         name:
           - curl
           - rsyslog
           - openssl
-        allowerasing: true
+        # allowerasing: true
         state: present
     
     - name: restart rsyslog
