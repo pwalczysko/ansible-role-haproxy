@@ -1,7 +1,15 @@
 ---
+- name: restart rsyslog
+  become: true
+  service:
+    name: rsyslog
+    state: restarted
+  when: haproxy_syslog_enable
+  ignore_errors: yes
+
 - name: Ensure HAProxy is installed
   become: true
-  package:
+  ansible.builtin.dnf:
     name: "{{ haproxy_package_name }}"
     state: present
 
@@ -27,6 +35,14 @@
   when: haproxy_syslog_enable
   notify:
     - restart rsyslog
+
+- name: restart rsyslog
+  become: true
+  service:
+    name: rsyslog
+    state: restarted
+  when: haproxy_syslog_enable
+  ignore_errors: yes
 
 - name: Ensure HAProxy is enabled (so init script will start it on Debian).
   become: true
