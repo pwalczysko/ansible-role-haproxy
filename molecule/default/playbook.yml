@@ -10,28 +10,8 @@
           - curl
           - rsyslog
           - openssl
-        # allowerasing: true
         state: present
     
-    - name: restart rsyslog
-      become: true
-      service:
-        name: rsyslog
-        state: restarted
-      # when: haproxy_syslog_enable
-      ignore_errors: yes
-
-    - name: Debug output of systemclt rsyslog
-      become: true
-      ansible.builtin.command:
-        rsyslogd -dn
-      register: rsyslog_status
-      ignore_errors: yes
-
-    - name: Show output
-      debug: 
-        msg: "{{ rsyslog_status.stdout }}"
-
     - name: Ensure dummy certificate is in place
       command: >-
         openssl req -x509 -nodes -days 365 -newkey rsa:2048

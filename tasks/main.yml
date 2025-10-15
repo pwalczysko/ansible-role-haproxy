@@ -1,23 +1,4 @@
 ---
-# - name: restart rsyslog
-#   become: true
-#   service:
-#     name: rsyslog
-#     state: restarted
-#   when: haproxy_syslog_enable
-#   ignore_errors: yes
-
-# - name: Debug output of systemclt rsyslog
-#   become: true
-#   ansible.builtin.command:
-#     rsyslogd -dn
-#   register: rsyslog_status
-#   ignore_errors: yes
-
-# - name: Show output
-#   debug: 
-#     msg: "{{ rsyslog_status.stdout }}"
-
 
 - name: Ensure HAProxy is installed
   become: true
@@ -47,25 +28,6 @@
   when: haproxy_syslog_enable
   notify:
     - restart rsyslog
-
-# - name: restart rsyslog
-#   become: true
-#   service:
-#     name: rsyslog
-#     state: restarted
-#   when: haproxy_syslog_enable
-#   ignore_errors: yes
-
-# - name: Debug output of systemclt rsyslog
-#   become: true
-#   ansible.builtin.command:
-#     journalctl -xeu rsyslog.service
-#   register: rsyslog_status
-#   ignore_errors: yes
-
-# - name: Show output
-#   debug: 
-#     msg: "{{ rsyslog_status.stdout }}"
 
 - name: Ensure HAProxy is enabled (so init script will start it on Debian).
   become: true
@@ -98,23 +60,3 @@
 - name: Ensure HAProxy is started and enabled on boot.
   become: true
   service: name=haproxy state=started enabled=yes
-
-- name: restart rsyslog
-  become: true
-  service:
-    name: rsyslog
-    state: restarted
-  when: haproxy_syslog_enable
-  ignore_errors: yes
-
-- name: Debug output of systemclt rsyslog
-  become: true
-  ansible.builtin.command:
-    rsyslogd -dn
-  register: rsyslog_status
-  ignore_errors: yes
-
-- name: Show output
-  debug: 
-    msg: "{{ rsyslog_status.stdout }}"
-
