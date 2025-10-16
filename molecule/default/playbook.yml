@@ -15,13 +15,13 @@
     - name: Set Filehandle Limits
       copy:
         src: limits.conf
-        dest: /lib/systemd/system/containerd.service.d
+        dest: /lib/systemd/system/rsyslog.service.d
     
     - name: Reload systemctl
       shell: systemctl daemon-reload
     
-    - name: Restart containerd
-      shell: systemctl restart containerd
+    # - name: Restart containerd
+    #   shell: systemctl restart containerd
 
     - name: restart rsyslog
       become: true
