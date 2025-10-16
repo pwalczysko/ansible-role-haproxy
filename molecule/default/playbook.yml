@@ -13,7 +13,6 @@
         state: present
 
     - name: Set Filehandle Limits
-      notify: Reload systemctl
       copy:
         src: limits.conf
         dest: /lib/systemd/system/containerd.service.d
