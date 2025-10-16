@@ -5,10 +5,10 @@
     - name: Install dependencies
       become: true
       dnf:
-        name:
-          # - curl
-          - rsyslog
-          - openssl
+        name: openssl
+          # # - curl
+          # - rsyslog
+          # - 
         # allowerasing: true
         state: present
     
