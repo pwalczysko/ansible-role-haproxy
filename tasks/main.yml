@@ -62,11 +62,11 @@
   become: true
   service: name=haproxy state=started enabled=yes
 
-- name: restart haproxy
-  become: true
-  service:
-    name: haproxy
-    state: restarted
+# - name: restart haproxy
+#   become: true
+#   service:
+#     name: haproxy
+#     state: restarted
 
 - name: Debug output of systemclt rsyslog
   become: true
