@@ -2,6 +2,21 @@
 - name: Converge
   hosts: all
   pre_tasks:
+
+    - name: Import a key for epel
+      become: true
+      ansible.builtin.rpm_key:
+        state: present
+        key:  https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-9
+
+    - name: epel | setup dnf repository
+      become: true
+      ansible.builtin.dnf:
+        update_cache: true
+        name:
+          https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+        state: present
+
     - name: Install dependencies
       ansible.builtin.yum:
         name:
