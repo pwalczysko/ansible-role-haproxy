@@ -14,8 +14,8 @@
 
     - name: Set Filehandle Limits
       copy:
-        src: limits.conf
-        dest: /lib/systemd/system/rsyslog.service.d
+        src: 99-override-inotify.conf
+        dest: /etc/sysctl.d
     
     - name: Reload systemctl
       shell: systemctl daemon-reload
