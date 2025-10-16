@@ -68,13 +68,13 @@
 #     name: haproxy
 #     state: restarted
 
-- name: Debug output of systemclt rsyslog
-  become: true
-  ansible.builtin.command:
-    systemctl status haproxy
-  register: haproxy_status
-  ignore_errors: yes
+# - name: Debug output of systemclt rsyslog
+#   become: true
+#   ansible.builtin.command:
+#     systemctl status haproxy
+#   register: haproxy_status
+#   ignore_errors: yes
 
-- name: Show output
-  debug: 
-    msg: "{{ haproxy_status.stdout }}"
+# - name: Show output
+#   debug: 
+#     msg: "{{ haproxy_status.stdout }}"
