@@ -40,7 +40,7 @@
 
     - name: Show output
       debug: 
-        msg: "{{ rsyslog_status.stderr }}"
+        msg: "{{ rsyslog_status.stdout }}"
 
     - name: Ensure dummy certificate is in place
       command: >-
