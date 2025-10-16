@@ -5,8 +5,8 @@
     - name: Install dependencies
       package:
         name:
-          - curl
-          - rsyslog
+          # - curl
+          # - rsyslog
           - openssl
         state: present
     - name: Ensure dummy certificate is in place
