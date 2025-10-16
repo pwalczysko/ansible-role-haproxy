@@ -2,13 +2,13 @@
 - name: Converge
   hosts: all
   pre_tasks:
-    - name: Install dependencies
-      package:
-        name:
-          # - curl
-          # - rsyslog
-          - openssl
-        state: present
+    # - name: Install dependencies
+    #   package:
+    #     name:
+    #       - curl
+    #       # - rsyslog
+    #       - openssl
+    #     state: present
     - name: Ensure dummy certificate is in place
       command: >-
         openssl req -x509 -nodes -days 365 -newkey rsa:2048
