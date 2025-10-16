@@ -4,11 +4,11 @@
   pre_tasks:
     - name: Install dependencies
       become: true
-      dnf:
-        name: openssl
-          # # - curl
-          # - rsyslog
-          # - 
+      package:
+        name:
+          # - curl
+          - rsyslog
+          - openssl
         # allowerasing: true
         state: present
     
