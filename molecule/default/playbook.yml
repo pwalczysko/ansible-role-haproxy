@@ -49,7 +49,7 @@
 
     - name: download rsyslog repo
       become: true
-      get_url: url=http://rpms.adiscon.com/v8-stable/rsyslog.repo dest=/etc/yum.repos.d/
+      ansible.builtin.get_url: url=http://rpms.adiscon.com/v8-stable/rsyslog.repo dest=/etc/yum.repos.d/
 
     # - name: enable rsyslog repo
     #   become: true

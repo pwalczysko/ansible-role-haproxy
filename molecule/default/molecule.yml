@@ -9,16 +9,17 @@ lint: |
     flake8
 platforms:
   - name: haproxy-rockylinux9
-    image: rockylinux:9
-    # image: rsyslog/syslog_appliance_alpine
+    image: kasmweb/core-rockylinux-9
+    # image: eniocarboni/docker-rockylinux-systemd:9
+    # image: rsyslog/rsyslog
     image_version: latest
-    # command: /sbin/init
-    # privileged: true
-    # cgroupns_mode: host
-    # tmpfs:
-    #   - /sys/fs/cgroup
-    # groups:
-    #   - extra_options
+    command: /sbin/init
+    privileged: true
+    cgroupns_mode: host
+    tmpfs:
+      - /sys/fs/cgroup
+    groups:
+      - extra_options
 provisioner:
   name: ansible
   lint:
