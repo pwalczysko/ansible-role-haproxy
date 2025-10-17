@@ -79,7 +79,7 @@
       # become: true
 
     - name: Debug output of systemclt rsyslog
-      become: true
+      # become: true
       ansible.builtin.command:
         rsyslogd -dn
       register: rsyslog_status
