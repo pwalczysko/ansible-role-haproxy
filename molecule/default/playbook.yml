@@ -48,7 +48,7 @@
         state: present
 
     - name: Install dependencies
-      ansible.builtin.dnf:
+      ansible.builtin.yum:
         update_cache: true
         name:
           - curl
