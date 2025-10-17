@@ -9,7 +9,8 @@ lint: |
     flake8
 platforms:
   - name: haproxy-rockylinux9
-    image: eniocarboni/docker-rockylinux-systemd:9
+    # image: eniocarboni/docker-rockylinux-systemd:9
+    image: rsyslog/syslog_appliance_alpine
     image_version: latest
     command: /sbin/init
     privileged: true
