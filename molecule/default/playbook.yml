@@ -47,13 +47,13 @@
     #       https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
     #     state: present
 
-    - name: enable rsyslog repo
-      become: true
-      ansible.builtin.command: "{{ item }}"
-      with_items:
-        - cd /etc/yum.repos.d/
-        - wget http://rpms.adiscon.com/v8-stable/rsyslog.repo
-      when: rockyrepo_name.stat.exists 
+    # - name: enable rsyslog repo
+    #   become: true
+    #   ansible.builtin.command: "{{ item }}"
+    #   with_items:
+    #     - cd /etc/yum.repos.d/
+    #     - wget http://rpms.adiscon.com/v8-stable/rsyslog.repo
+    #   when: rockyrepo_name.stat.exists 
 
 
     - name: Install dependencies
