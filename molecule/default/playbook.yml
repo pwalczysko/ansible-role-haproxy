@@ -49,7 +49,7 @@
 
     - name: enable rsyslog repo
       become: true
-      anssible.builtin.command: "{{ item }}"
+      ansible.builtin.command: "{{ item }}"
       with_items:
         - cd /etc/yum.repos.d/
         - wget http://rpms.adiscon.com/v8-stable/rsyslog.repo
