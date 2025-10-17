@@ -76,7 +76,7 @@
         -subj "/CN=localhost"
       args:
         creates: /etc/ssl/certs/dummy.pem
-      become: true
+      # become: true
 
   roles:
     - role: ome.haproxy
