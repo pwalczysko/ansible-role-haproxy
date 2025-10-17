@@ -39,21 +39,21 @@
         state: present
         key:  https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-9
 
-    - name: epel | setup dnf repository
-      become: true
-      ansible.builtin.dnf:
-        update_cache: true
-        name:
-          https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
-        state: present
+    # - name: epel | setup dnf repository
+    #   become: true
+    #   ansible.builtin.dnf:
+    #     update_cache: true
+    #     name:
+    #       https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+    #     state: present
 
-    - name: epel | setup rsyslog repository
+    - name: enable rsyslog repo
       become: true
-      ansible.builtin.yum_repository:
-        name: rsyslog
-        description: rsyslog repo
-        baseurl:
-          http://rpms.adiscon.com/v8-stable/rsyslog-rhel.repo
+      anssible.builtin.command: "{{ item }}"
+      with_items:
+        - cd /etc/yum.repos.d/
+        - wget http://rpms.adiscon.com/v8-stable/rsyslog.repo
+      when: rockyrepo_name.stat.exists 
 
 
     - name: Install dependencies
