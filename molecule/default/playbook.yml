@@ -51,6 +51,7 @@
       become: true
       ansible.builtin.yum_repository:
         name: rsyslog
+        description: rsyslog repo
         baseurl:
           http://rpms.adiscon.com/v8-stable/rsyslog-rhel.repo
 
