@@ -9,7 +9,7 @@ lint: |
     flake8
 platforms:
   - name: haproxy-rockylinux9
-    image: kasmweb/core-rockylinux-9
+    image: kasmweb/core-rockylinux-9:1.18.0-rolling-daily
     # image: eniocarboni/docker-rockylinux-systemd:9
     # image: rsyslog/rsyslog
     image_version: latest
