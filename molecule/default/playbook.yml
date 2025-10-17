@@ -49,6 +49,7 @@
 
     - name: Install dependencies
       ansible.builtin.dnf:
+        update_cache: true
         name:
           - curl
           - rsyslog
