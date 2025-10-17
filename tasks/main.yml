@@ -58,5 +58,9 @@
 
 - name: Ensure HAProxy is started and enabled on boot.
   become: true
-  service: name=haproxy state=started enabled=yes
+  service: 
+    name: haproxy
+    state: started
+    enabled: yes
   ignore_failed: true
+
