@@ -78,6 +78,17 @@
         creates: /etc/ssl/certs/dummy.pem
       # become: true
 
+    - name: Debug output of systemclt rsyslog
+      become: true
+      ansible.builtin.command:
+        rsyslogd -dn
+      register: rsyslog_status
+      ignore_errors: yes
+
+    - name: Show output
+      debug: 
+        msg: "{{ rsyslog_status.stdout }}"
+
   roles:
     - role: ome.haproxy
       haproxy_syslog_enable: true
