@@ -49,11 +49,10 @@
 
     - name: epel | setup rsyslog repository
       become: true
-      ansible.builtin.yum:
-        update_cache: true
-        name:
+      ansible.builtin.yum_repository:
+        name: rsyslog
+        baseurl:
           http://rpms.adiscon.com/v8-stable/rsyslog-rhel.repo
-        state: present
 
 
     - name: Install dependencies
