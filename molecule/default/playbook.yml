@@ -98,6 +98,7 @@
       ignore_errors: yes
   
     - name: Check the /var/log/messages
+      become: true
       ansible.builtin.command: >-
         grep rsys /var/log/messages
       register: rsys_message
