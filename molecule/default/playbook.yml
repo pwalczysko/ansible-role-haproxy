@@ -47,9 +47,9 @@
           https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
         state: present
 
-    - name: download rsyslog repo
-      become: true
-      ansible.builtin.get_url: url=http://rpms.adiscon.com/v8-stable/rsyslog.repo dest=/etc/yum.repos.d/
+    # - name: download rsyslog repo
+    #   become: true
+    #   ansible.builtin.get_url: url=http://rpms.adiscon.com/v8-stable/rsyslog.repo dest=/etc/yum.repos.d/
 
     # - name: enable rsyslog repo
     #   become: true
