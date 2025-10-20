@@ -14,12 +14,6 @@
           echo ""
       changed_when: false
 
-    - name : Check if selinux installed
-      ansible.builtin.command:
-          setstatus
-      register: setstatus_out
-      ignore_errors: true
-
     - name: Show output
       debug: 
         msg: "{{ setstatus_out }}"
@@ -99,10 +93,6 @@
         allowerasing: true
         state: present
 
-    - name: Disable SELinux
-      ansible.posix.selinux:
-        state: disabled
-
     - name: Debug - what from rsyslog is installed
       become: true
       ansible.builtin.command:
@@ -116,7 +106,7 @@
         msg: "{{ rsyslog_packages }}"
 
     - name: Ensure dummy certificate is in place
-      command: >-
+      ansible.builtin.command: >-
         openssl req -x509 -nodes -days 365 -newkey rsa:2048
         -keyout /etc/ssl/certs/dummy.pem -out /etc/ssl/certs/dummy.pem
         -subj "/CN=localhost"
