@@ -14,6 +14,10 @@
           echo ""
       changed_when: false
 
+    - name: Disable SELinux
+      ansible.posix.selinux:
+        state: disabled
+
     - name : zeroc ice | check rocky.repo file
       stat:
         path: /etc/yum.repos.d/rocky.repo
@@ -59,9 +63,9 @@
           https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
         state: present
 
-    - name: download rsyslog repo
-      become: true
-      ansible.builtin.get_url: url=http://rpms.adiscon.com/v8-stable/rsyslog.repo dest=/etc/yum.repos.d/
+    # - name: download rsyslog repo
+    #   become: true
+    #   ansible.builtin.get_url: url=http://rpms.adiscon.com/v8-stable/rsyslog.repo dest=/etc/yum.repos.d/
 
     # - name: enable rsyslog repo
     #   become: true
@@ -74,15 +78,15 @@
 
     - name: Install dependencies
       become: true
-      ansible.builtin.yum:
+      ansible.builtin.dnf:
         update_cache: true
         name:
           - curl
-          - rsyslog <= 7.2412
-          - rsyslog-gnutls <= 7.2412
-          - rsyslog-gssapi <= 7.2412
-          - rsyslog-logrotate <= 7.2412
-          - rsyslog-relp <= 7.2412
+          - rsyslog
+          - rsyslog-gnutls
+          - rsyslog-gssapi
+          - rsyslog-logrotate
+          - rsyslog-relp
           - openssl
         allowerasing: true
         state: present
