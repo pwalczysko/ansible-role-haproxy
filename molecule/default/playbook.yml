@@ -8,56 +8,56 @@
         path: /etc/yum.repos.d/rocky.repo
       register: rockyrepo_name
 
-    # - name: zeroc ice | install config-manager in rocky
-    #   become: true
-    #   ansible.builtin.dnf:
-    #     update_cache: true
-    #     name:
-    #       - 'dnf-command(config-manager)'
-    #     state: present
-    #   when: rockyrepo_name.stat.exists
+    - name: zeroc ice | install config-manager in rocky
+      become: true
+      ansible.builtin.dnf:
+        update_cache: true
+        name:
+          - 'dnf-command(config-manager)'
+        state: present
+      when: rockyrepo_name.stat.exists
 
-    # - name: zeroc ice | Enable crp repo in rocky
-    #   become: true
-    #   ansible.builtin.replace:
-    #     path:  /etc/yum.repos.d/rocky.repo
-    #     # create: false
-    #     regexp: enabled=0
-    #     replace: enabled=1
-    #     # state: present
-    #   when: rockyrepo_name.stat.exists
+    - name: zeroc ice | Enable crp repo in rocky
+      become: true
+      ansible.builtin.replace:
+        path:  /etc/yum.repos.d/rocky.repo
+        # create: false
+        regexp: enabled=0
+        replace: enabled=1
+        # state: present
+      when: rockyrepo_name.stat.exists
 
-    # - name: zeroc ice | Add  repository for RHEL
-    #   become: true
-    #   ansible.builtin.command:
-    #     subscription-manager repos --enable codeready-builder-for-rhel-9-x86_64-rpms
-    #   when: ansible_os_family == 'RedHat' and not rockyrepo_name.stat.exists
+    - name: zeroc ice | Add  repository for RHEL
+      become: true
+      ansible.builtin.command:
+        subscription-manager repos --enable codeready-builder-for-rhel-9-x86_64-rpms
+      when: ansible_os_family == 'RedHat' and not rockyrepo_name.stat.exists
 
-    # - name: Import a key for epel
-    #   become: true
-    #   ansible.builtin.rpm_key:
-    #     state: present
-    #     key:  https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-9
+    - name: Import a key for epel
+      become: true
+      ansible.builtin.rpm_key:
+        state: present
+        key:  https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-9
 
-    # - name: epel | setup dnf repository
-    #   become: true
-    #   ansible.builtin.dnf:
-    #     update_cache: true
-    #     name:
-    #       https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
-    #     state: present
+    - name: epel | setup dnf repository
+      become: true
+      ansible.builtin.dnf:
+        update_cache: true
+        name:
+          https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+        state: present
 
-    # - name: download rsyslog repo
-    #   become: true
-    #   ansible.builtin.get_url: url=http://rpms.adiscon.com/v8-stable/rsyslog.repo dest=/etc/yum.repos.d/
+    - name: download rsyslog repo
+      become: true
+      ansible.builtin.get_url: url=http://rpms.adiscon.com/v8-stable/rsyslog.repo dest=/etc/yum.repos.d/
 
-    # - name: enable rsyslog repo
-    #   become: true
-    #   ansible.builtin.command: "{{ item }}"
-    #   with_items:
-    #     - cd /etc/yum.repos.d/
-    #     - wget http://rpms.adiscon.com/v8-stable/rsyslog.repo
-    #   when: rockyrepo_name.stat.exists 
+    - name: enable rsyslog repo
+      become: true
+      ansible.builtin.command: "{{ item }}"
+      with_items:
+        - cd /etc/yum.repos.d/
+        - wget http://rpms.adiscon.com/v8-stable/rsyslog.repo
+      when: rockyrepo_name.stat.exists 
 
 
     - name: Install dependencies
