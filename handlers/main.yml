@@ -5,9 +5,11 @@
     name: rsyslog
     state: restarted
   when: haproxy_syslog_enable
+  failed_when: false
 
 - name: restart haproxy
   become: true
   service:
     name: haproxy
     state: restarted
+  failed_when: false
