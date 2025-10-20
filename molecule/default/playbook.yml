@@ -100,7 +100,7 @@
     - name: Check the /var/log/messages
       become: true
       ansible.builtin.command: >-
-       sudo cat /var/log/messages
+       ls /var/log | grep mess
       register: rsys_message
       ignore_errors: yes
       changed_when: false
