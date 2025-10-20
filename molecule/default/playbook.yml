@@ -14,10 +14,6 @@
           echo ""
       changed_when: false
 
-    - name: Show output
-      debug: 
-        msg: "{{ setstatus_out }}"
-
     - name : zeroc ice | check rocky.repo file
       stat:
         path: /etc/yum.repos.d/rocky.repo
