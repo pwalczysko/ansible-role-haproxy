@@ -42,6 +42,7 @@
       ansible.builtin.command:
         subscription-manager repos --enable codeready-builder-for-rhel-9-x86_64-rpms
       when: ansible_os_family == 'RedHat' and not rockyrepo_name.stat.exists
+      ignore_errors: true
 
     - name: Import a key for epel
       become: true
