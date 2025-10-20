@@ -65,11 +65,11 @@
         update_cache: true
         name:
           - curl
-          - rsyslog
-          - rsyslog-gnutls
-          - rsyslog-gssapi
-          - rsyslog-logrotate
-          - rsyslog-relp
+          - rsyslog <= 8.2412
+          # - rsyslog-gnutls
+          # - rsyslog-gssapi
+          # - rsyslog-logrotate
+          # - rsyslog-relp
           - openssl
         allowerasing: true
         state: present
