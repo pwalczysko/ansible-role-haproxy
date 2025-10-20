@@ -104,11 +104,9 @@
       ignore_errors: yes
       changed_when: false
 
-    - set_fact:
-        psk={{ rsys_message.stdout }}
-
     - name: Show the message
-      debug: var=psk
+      debug: 
+        msg: "{{ rsys_message }}"
 
     - name: Debug - what from rsyslog is installed
       become: true
