@@ -1,12 +1,12 @@
 ---
 - name: Ensure HAProxy is installed
-  # become: true
+  become: true
   package:
     name: "{{ haproxy_package_name }}"
     state: present
 
 - name: configure haproxy logrotation
-  # become: true
+  become: true
   template:
     backup: false
     dest: /etc/logrotate.d/haproxy
@@ -17,7 +17,7 @@
 # some haproxy logs going to the console, and to potentially take account of
 # other apps using the same syslog facility (probably unlikely)
 - name: configure haproxy log file
-  # become: true
+  become: true
   template:
     backup: false
     # Deliberately named to overwrite the ubuntu haproxy config:
@@ -29,7 +29,7 @@
     - restart rsyslog
 
 - name: Ensure HAProxy is enabled (so init script will start it on Debian).
-  # become: true
+  become: true
   lineinfile:
     dest: /etc/default/haproxy
     regexp: "^ENABLED.+$"
@@ -48,7 +48,7 @@
   when: "selinux_enabled | default(False)"
 
 - name: Copy HAProxy configuration in place.
-  # become: true
+  become: true
   template:
     src: "{{ haproxy_cfg_template }}"
     dest: /etc/haproxy/haproxy.cfg
@@ -57,7 +57,7 @@
   notify: restart haproxy
 
 - name: Ensure HAProxy is started and enabled on boot.
-  # become: true
+  become: true
   service: 
     name: haproxy
     state: started

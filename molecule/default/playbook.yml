@@ -51,13 +51,13 @@
       become: true
       ansible.builtin.get_url: url=http://rpms.adiscon.com/v8-stable/rsyslog.repo dest=/etc/yum.repos.d/
 
-    - name: enable rsyslog repo
-      become: true
-      ansible.builtin.command: "{{ item }}"
-      with_items:
-        - cd /etc/yum.repos.d/
-        - wget http://rpms.adiscon.com/v8-stable/rsyslog.repo
-      when: rockyrepo_name.stat.exists 
+    # - name: enable rsyslog repo
+    #   become: true
+    #   ansible.builtin.command: "{{ item }}"
+    #   with_items:
+    #     - cd /etc/yum.repos.d/
+    #     - wget http://rpms.adiscon.com/v8-stable/rsyslog.repo
+    #   when: rockyrepo_name.stat.exists 
 
 
     - name: Install dependencies
@@ -73,6 +73,14 @@
           - openssl
         allowerasing: true
         state: present
+    
+    - name: Debug - what from rsyslog is installed
+      become: true
+      ansible.builtin.command:
+        dnf list installed | grep rsys
+      register: rsyslog_status
+      ignore_errors: yes
+    
     - name: Ensure dummy certificate is in place
       command: >-
         openssl req -x509 -nodes -days 365 -newkey rsa:2048
@@ -80,10 +88,10 @@
         -subj "/CN=localhost"
       args:
         creates: /etc/ssl/certs/dummy.pem
-      # become: true
+      become: true
 
     - name: Debug output of systemclt rsyslog
-      # become: true
+      become: true
       ansible.builtin.command:
         rsyslogd -dn
       register: rsyslog_status
