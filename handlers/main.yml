@@ -5,7 +5,7 @@
     name: rsyslog
     state: restarted
   when: haproxy_syslog_enable
-  ignore_errors: yes
+  # ignore_errors: yes
 
 - name: restart haproxy
   become: true
