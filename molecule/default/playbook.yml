@@ -15,10 +15,9 @@
       changed_when: false
 
     - name : Fix permissions for rhel image
-      ansible.builtin.shell:
-        cmd: |
+      ansible.builtin.command:
           setstatus
-        register: setstatus_out
+      register: setstatus_out
       ignore_errors: false
 
     - name: Show output
