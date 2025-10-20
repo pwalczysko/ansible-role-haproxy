@@ -97,8 +97,8 @@
         state: started
       register: myserviceDetails
       # until: myserviceDetails.status.ActiveState == "active"
-      retries: 15
-      delay: 20
+      retries: 5
+      # delay: 20
       ignore_errors: yes
   
     - name: verify install of rsyslog
