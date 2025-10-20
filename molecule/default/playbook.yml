@@ -92,6 +92,7 @@
     - name: start rsyslog
       become: true
       ansible.builtin.service:
+        enabled: true
         name: rsyslog
         state: started
       register: myserviceDetails
