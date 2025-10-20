@@ -99,15 +99,16 @@
   
     - name: Check the /var/log/messages
       become: true
-      ansible.builtin.command: >-
-       cat /var/log/messages
+      ansible.builtin.command:
+        cmd: cat messages
+        chdir: /var/log
       register: rsys_message
       ignore_errors: yes
       changed_when: false
 
     - name: Show the message
       debug: 
-        msg: "{{ rsys_message }}"
+        msg: "{{ rsys_message.stdout }}"
 
     - name: Debug - what from rsyslog is installed
       become: true
