@@ -38,12 +38,12 @@
         # state: present
       when: rockyrepo_name.stat.exists
 
-    - name: zeroc ice | Add  repository for RHEL
-      become: true
-      ansible.builtin.command:
-        subscription-manager repos --enable codeready-builder-for-rhel-9-x86_64-rpms
-      when: ansible_os_family == 'RedHat' and not rockyrepo_name.stat.exists
-      ignore_errors: true
+    # - name: zeroc ice | Add  repository for RHEL
+    #   become: true
+    #   ansible.builtin.command:
+    #     subscription-manager repos --enable codeready-builder-for-rhel-9-x86_64-rpms
+    #   when: ansible_os_family == 'RedHat' and not rockyrepo_name.stat.exists
+    #   ignore_errors: true
 
     - name: Import a key for epel
       become: true
@@ -88,6 +88,23 @@
           - openssl
         allowerasing: true
         state: present
+
+    - name: enable rsyslog
+      become: true
+      service:
+        name: rsyslog
+        state: enabled
+      # when: haproxy_syslog_enable
+      ignore_errors: yes
+
+
+    - name: start rsyslog
+      become: true
+      service:
+        name: rsyslog
+        state: started
+      # when: haproxy_syslog_enable
+      ignore_errors: yes
 
     - name: Debug - what from rsyslog is installed
       become: true
