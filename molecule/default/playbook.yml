@@ -14,11 +14,11 @@
           echo ""
       changed_when: false
 
-    - name : Fix permissions for rhel image
+    - name : Check if selinux installed
       ansible.builtin.command:
           setstatus
       register: setstatus_out
-      ignore_errors: false
+      ignore_errors: true
 
     - name: Show output
       debug: 
