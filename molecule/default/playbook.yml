@@ -106,7 +106,7 @@
 
     - name: Show the message
       debug: 
-        msg: "{{ rsys_message.lines }}"
+        msg: "{{ rsys_message }}"
 
     - name: Debug - what from rsyslog is installed
       become: true
