@@ -89,15 +89,6 @@
         allowerasing: true
         state: present
 
-    - name: enable rsyslog
-      become: true
-      service:
-        name: rsyslog
-        state: enabled
-      # when: haproxy_syslog_enable
-      ignore_errors: yes
-
-
     - name: start rsyslog
       become: true
       service:
@@ -105,6 +96,17 @@
         state: started
       # when: haproxy_syslog_enable
       ignore_errors: yes
+  
+    - name: Check the /var/log/messages
+      ansible.builtin.command: >-
+        grep rsys /var/log/messages
+      register: rsys_message
+      ignore_errors: yes
+      changed_when: false
+
+    - name: Show the message
+      debug: 
+        msg: "{{ rsys_message.lines }}"
 
     - name: Debug - what from rsyslog is installed
       become: true
@@ -116,7 +118,7 @@
 
     - name: Show output
       debug: 
-        msg: "{{ rsyslog_packages }}"
+        msg: "{{ rsyslog_packages.lines }}"
 
     - name: Ensure dummy certificate is in place
       ansible.builtin.command: >-
