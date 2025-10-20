@@ -78,9 +78,13 @@
       become: true
       ansible.builtin.command:
         dnf list installed | grep rsys
-      register: rsyslog_status
+      register: rsyslog_packages
       ignore_errors: yes
-    
+
+    - name: Show output
+      debug: 
+        msg: "{{ rsyslog_packages.stdout }}"
+
     - name: Ensure dummy certificate is in place
       command: >-
         openssl req -x509 -nodes -days 365 -newkey rsa:2048
