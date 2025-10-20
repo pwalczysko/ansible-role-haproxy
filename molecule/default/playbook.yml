@@ -12,6 +12,7 @@
           chmod 0400 /etc/shadow
           ls -l /etc/shadow
           echo ""
+      changed_when: false
 
     - name : zeroc ice | check rocky.repo file
       stat:
@@ -89,7 +90,7 @@
     - name: Debug - what from rsyslog is installed
       become: true
       ansible.builtin.command:
-        dnf list installed
+        dnf list installed | grep rsyslog
       register: rsyslog_packages
       ignore_errors: yes
       changed_when: false
