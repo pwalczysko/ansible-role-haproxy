@@ -3,6 +3,16 @@
   hosts: all
   pre_tasks:
 
+
+    - name : Fix permissions for rhel image
+      ansible.builtin.shell:
+        cmd: |
+          echo ""
+          ls -l /etc/shadow
+          chmod 0400 /etc/shadow
+          ls -l /etc/shadow
+          echo ""
+
     - name : zeroc ice | check rocky.repo file
       stat:
         path: /etc/yum.repos.d/rocky.repo
