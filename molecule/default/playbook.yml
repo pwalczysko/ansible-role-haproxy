@@ -119,7 +119,7 @@
 
     - name: Show output
       debug: 
-        msg: "{{ rsyslog_packages.lines }}"
+        msg: "{{ rsyslog_packages }}"
 
     - name: Ensure dummy certificate is in place
       ansible.builtin.command: >-
