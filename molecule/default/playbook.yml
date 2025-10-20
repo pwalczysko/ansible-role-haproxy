@@ -66,10 +66,10 @@
         name:
           - curl
           - rsyslog <= 8.2412
-          # - rsyslog-gnutls
-          # - rsyslog-gssapi
-          # - rsyslog-logrotate
-          # - rsyslog-relp
+          - rsyslog-gnutls <= 8.2412
+          - rsyslog-gssapi <= 8.2412
+          - rsyslog-logrotate <= 8.2412
+          - rsyslog-relp <= 8.2412
           - openssl
         allowerasing: true
         state: present
@@ -80,6 +80,7 @@
         dnf list installed
       register: rsyslog_packages
       ignore_errors: yes
+      changed_when: false
 
     - name: Show output
       debug: 
@@ -94,16 +95,16 @@
         creates: /etc/ssl/certs/dummy.pem
       become: true
 
-    - name: Debug output of systemclt rsyslog
-      become: true
-      ansible.builtin.command:
-        rsyslogd -dn
-      register: rsyslog_status
-      ignore_errors: yes
+    # - name: Debug output of systemclt rsyslog
+    #   become: true
+    #   ansible.builtin.command:
+    #     rsyslogd -dn
+    #   register: rsyslog_status
+    #   ignore_errors: yes
 
-    - name: Show output
-      debug: 
-        msg: "{{ rsyslog_status.stdout }}"
+    # - name: Show output
+    #   debug: 
+    #     msg: "{{ rsyslog_status.stdout }}"
 
   roles:
     - role: ome.haproxy
