@@ -77,13 +77,13 @@
     - name: Debug - what from rsyslog is installed
       become: true
       ansible.builtin.command:
-        dnf list installed | grep rsys
+        dnf list installed
       register: rsyslog_packages
       ignore_errors: yes
 
     - name: Show output
       debug: 
-        msg: "{{ rsyslog_packages.stdout }}"
+        msg: "{{ rsyslog_packages }}"
 
     - name: Ensure dummy certificate is in place
       command: >-
