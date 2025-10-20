@@ -81,6 +81,7 @@
       ansible.builtin.dnf:
         update_cache: true
         name:
+          - libselinux-python
           - curl
           - rsyslog
           - rsyslog-gnutls
