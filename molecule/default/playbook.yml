@@ -91,16 +91,19 @@
 
     - name: start rsyslog
       become: true
-      service:
+      ansible.builtin.service:
         name: rsyslog
         state: started
-      # when: haproxy_syslog_enable
+      register: myserviceDetails
+      until: myserviceDetails.status.ActiveState == "active"
+      retries: 15
+      delay: 20
       ignore_errors: yes
   
     - name: Check the /var/log/messages
       become: true
       ansible.builtin.command:
-        cmd: systemclt status rsyslog
+        cmd: systemctl status rsyslog
         # chdir: /etc
       register: rsys_message
       ignore_errors: yes
