@@ -14,10 +14,6 @@
           echo ""
       changed_when: false
 
-    - name: Disable SELinux
-      ansible.posix.selinux:
-        state: disabled
-
     - name : zeroc ice | check rocky.repo file
       stat:
         path: /etc/yum.repos.d/rocky.repo
@@ -91,7 +87,11 @@
           - openssl
         allowerasing: true
         state: present
-    
+
+    - name: Disable SELinux
+      ansible.posix.selinux:
+        state: disabled
+
     - name: Debug - what from rsyslog is installed
       become: true
       ansible.builtin.command:
