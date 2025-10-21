@@ -110,11 +110,10 @@
       # delay: 20
       ignore_errors: yes
 
-    - name: enable rsyslog
-      become: true
-      ansible.builtin.command:
-        cmd: "sudo cat /var/log/messages | grep rsyslog"
-        chdir: /var/log
+    - name: display multiple file contents
+      ansible.builtin.debug: var=item
+      with_file:
+        - "/var/log/messages"
       register: logs_message
       ignore_errors: yes
       changed_when: false
