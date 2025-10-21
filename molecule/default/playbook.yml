@@ -113,7 +113,7 @@
     - name: enable rsyslog
       become: true
       ansible.builtin.command:
-        cmd: sudo cat /var/log/messages | grep rsyslog
+        cmd: "sudo cat /var/log/messages | grep rsyslog"
         chdir: /var/log
       register: logs_message
       ignore_errors: yes
