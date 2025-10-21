@@ -114,7 +114,7 @@
       become: true
       ansible.builtin.debug: var=item
       with_file:
-        - "/var/log/messages"
+        - "/var/log/syslog"
       register: logs_message
       ignore_errors: yes
       changed_when: false
