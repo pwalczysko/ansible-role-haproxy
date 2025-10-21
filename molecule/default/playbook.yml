@@ -98,15 +98,6 @@
       ignore_errors: yes
       changed_when: false
 
-    - name: enable rsyslog
-      become: true
-      ansible.builtin.command:
-        cmd: systemctl daemon-reload
-        chdir: /etc
-      register: daemon_message
-      ignore_errors: yes
-      changed_when: false
-
     - name: start rsyslog
       become: true
       ansible.builtin.service:
@@ -118,7 +109,20 @@
       retries: 5
       # delay: 20
       ignore_errors: yes
-  
+
+    - name: enable rsyslog
+      become: true
+      ansible.builtin.command:
+        cmd: sudo cat /var/log/messages | grep rsyslog
+        chdir: /var/log
+      register: logs_message
+      ignore_errors: yes
+      changed_when: false
+
+    - name: Show the rsyslog messages content
+      debug: 
+        msg: "{{ logs_message }}"
+
     - name: verify install of rsyslog
       become: true
       ansible.builtin.command:
