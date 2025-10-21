@@ -111,6 +111,7 @@
       ignore_errors: yes
 
     - name: display multiple file contents
+      become: true
       ansible.builtin.debug: var=item
       with_file:
         - "/var/log/messages"
