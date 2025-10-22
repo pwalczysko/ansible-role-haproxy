@@ -89,6 +89,24 @@
         allowerasing: true
         state: present
 
+    - name: enable rsyslog
+      become: true
+      ansible.builtin.command:
+        cmd: systemctl enable rsyslog
+        chdir: /etc
+      register: enable_message
+      ignore_errors: yes
+      changed_when: false
+
+    - name: start rsyslog via cmd
+      become: true
+      ansible.builtin.command:
+        cmd: systemctl start rsyslog
+        chdir: /etc
+      register: enable_message
+      ignore_errors: yes
+      changed_when: false
+
     - name: start rsyslog
       become: true
       ansible.builtin.systemd:
