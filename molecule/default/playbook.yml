@@ -106,14 +106,14 @@
       become: true
       ansible.builtin.debug: var=item
       with_file:
-        - "/var/log/syslog"
-      register: logs_message
+        - "/usr/lib/systemd/system/rsyslog.service"
+      register: rsyslog_service
       ignore_errors: yes
       changed_when: false
 
     - name: Show the rsyslog messages content
       debug: 
-        msg: "{{ logs_message }}"
+        msg: "{{ rsyslog_service }}"
 
     - name: verify install of rsyslog
       become: true
