@@ -89,21 +89,12 @@
         allowerasing: true
         state: present
 
-    - name: enable rsyslog
-      become: true
-      ansible.builtin.command:
-        cmd: systemctl enable rsyslog
-        chdir: /etc
-      register: enable_message
-      ignore_errors: yes
-      changed_when: false
-
     - name: start rsyslog
       become: true
       ansible.builtin.systemd:
         daemon_reload: true
         enabled: true
-        name: rsyslogd.service
+        name: rsyslog.service
         state: started
       register: myserviceDetails
       # until: myserviceDetails.status.ActiveState == "active"
